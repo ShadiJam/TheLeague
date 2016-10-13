@@ -47,13 +47,17 @@ namespace TheLeague
             {
                 process(s.Trim());
             }
-            
-            
+
+            Console.WriteLine(teams);
+            Console.ReadLine();
         }
         class Sport {
             public string name;
-            enum Basketball {
+            enum SportType {
                 Basketball,
+                Tennis,
+                Soccer,
+                Football,
             }
             IEnumerable<League> leagues = new List<League>();
             public override string ToString()
