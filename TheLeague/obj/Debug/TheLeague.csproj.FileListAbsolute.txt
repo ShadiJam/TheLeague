@@ -1,1 +1,6 @@
 C:\Users\shadijam\Code\TheLeague\TheLeague\bin\Debug\TheLeague.exe.config
+C:\Users\shadijam\Code\TheLeague\TheLeague\bin\Debug\TheLeague.exe
+C:\Users\shadijam\Code\TheLeague\TheLeague\bin\Debug\TheLeague.pdb
+C:\Users\shadijam\Code\TheLeague\TheLeague\obj\Debug\TheLeague.csprojResolveAssemblyReference.cache
+C:\Users\shadijam\Code\TheLeague\TheLeague\obj\Debug\TheLeague.exe
+C:\Users\shadijam\Code\TheLeague\TheLeague\obj\Debug\TheLeague.pdb

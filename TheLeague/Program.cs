@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace TheLeague
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            const string DATA1 = "*Rockets*, _Mike D'Antoni_, _Jeff Bzdelik_, Anderson Ryan, Trevor Ariza, Patrick Beverley, Corey Brewer, Bobby Brown";
+            var leagueSport = new Sport("Basketball");
+            var leagueName = new League("National Basketball Association");
+            const string DATA1 = "*Rockets*, _Mike D'Antoni_, _Jeff Bzdelik_, Ryan Anderson, Trevor Ariza, Patrick Beverley, Corey Brewer, James Hardon";
             const string DATA2 = "*Bulls*, _Fred Hoiberg_, _Randy Brown_, Jimmy Butler, Tah Gibson, Rajon Rondo, Tony Snell, Robin Lopez";
-            const string DATA3 = "*Knicks*, _Jeff Hornacek_, _Kurt Rambis_, Ron Baker, Justin Holiday, Maurice Ndour, Brandon Jennings, Carmelo Anthony";
+            const string DATA3 = "*Knicks*, _Jeff Hornacek_, _Kurt Rambis_, Derrick Williams, Justin Holiday, Thomas Lance, Brandon Jennings, Carmelo Anthony";
             List<Team> teams = new List<Team>();
             List<Coach> coaches = new List<Coach>();
             List<Player> players = new List<Player>();
@@ -47,12 +52,16 @@ namespace TheLeague
             {
                 process(s.Trim());
             }
-
+            
             Console.WriteLine(teams);
             Console.ReadLine();
         }
         class Sport {
-            public string name;
+            public string name { get; private set; }
+            public Sport(string name)
+            {
+                this.name = name;
+            }
             enum SportType {
                 Basketball,
                 Tennis,
@@ -66,7 +75,11 @@ namespace TheLeague
             }
         }
         class League {
-            public string name;
+            public string name { get; private set; }
+            public League(string name)
+            {
+                this.name = name;
+            }
             IEnumerable<Team> teams = new List<Team>();
             public override string ToString()
             {
@@ -74,12 +87,13 @@ namespace TheLeague
             }
         }
         class Team {
-            public string name;
-            public Team(string name)
+            public string name { get; private set; }
+            public string hometown;
+            public Team(string name = "", string hometown = "")
             {
                 this.name = name;
+                this.hometown = hometown;
             }
-            public string hometown;
             IEnumerable<Coach> coaches = new List<Coach>();
             IEnumerable<Player> players = new List<Player>();
             public override string ToString()
@@ -88,7 +102,7 @@ namespace TheLeague
             }
         }
         class Coach {
-            public string name;
+            public string name { get; private set; }
             public Coach(string name)
             {
                 this.name = name;
@@ -100,11 +114,11 @@ namespace TheLeague
         }
         class Player {
             public string name;
+            public int points;
             public Player(string name)
             {
                 this.name = name;
             }
-            int points;
             public override string ToString()
             {
                 return $"{name}";
