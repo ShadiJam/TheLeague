@@ -70,7 +70,7 @@ namespace TheLeague
             }
             
             Directory.CreateDirectory("html");
-            File.WriteAllText(@"html/index.html", team.ToString);
+            File.WriteAllText(@"html/index.html", Team.ToString);
 
             
             Console.ReadLine();
