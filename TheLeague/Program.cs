@@ -21,6 +21,7 @@ namespace TheLeague
             List<Team> teams = new List<Team>();
             List<Coach> coaches = new List<Coach>();
             List<Player> players = new List<Player>();
+            List<League> allTeams = new List<League>();
             Team lastTeam = null;
             Coach lastCoach = null;
             Player lastPlayer = null;
@@ -30,8 +31,6 @@ namespace TheLeague
                 {
                     lastTeam = new Team(str.Substring(1, str.Length - 1));
                     teams.Add(lastTeam);
-                   
-                    
                 }
                 else if (str.IndexOf("'") == 0)
                 {
@@ -42,13 +41,13 @@ namespace TheLeague
                 {
                     lastCoach = new Coach(str.Substring(1, str.Length - 1));
                     coaches.Add(lastCoach);
-                    lastTeam.coaches = lastTeam.coaches.Concat(new Team[] { lastTeam });
+                    lastTeam.coaches = lastTeam.coaches.Concat(new Coach[] { lastCoach });
                 }
                 else if (str.IndexOf("-") == 0)
                 {
                     lastPlayer = new Player(str.Substring(1, str.Length - 1));
                     players.Add(lastPlayer);
-                    lastTeam.players = lastTeam.players.Concat(new Team[] { lastTeam });
+                    lastTeam.players = lastTeam.players.Concat(new Player[] { lastPlayer });
                 }
                 else if (str.IndexOf("|") == 0)
                 {
@@ -70,7 +69,7 @@ namespace TheLeague
             }
             
             Directory.CreateDirectory("html");
-            File.WriteAllText(@"html/index.html", Team.ToString);
+            File.WriteAllText(@"html/index.html", ___.ToString);
 
             
             Console.ReadLine();
@@ -99,13 +98,13 @@ namespace TheLeague
             {
                 this.name = name;
             }
-            public IEnumerable<Team> teams = new List<Team>();
+            public IEnumerable<Team> allTeams = new List<Team>();
             public override string ToString()
             {
                 return $"{name}";
             }
         }
-        class Team {
+        class Team { 
             public string name; 
             public string homeTown;
             public Team(string name)
@@ -138,13 +137,25 @@ namespace TheLeague
                 return $"{name}";
             }
         }
-        class Player {
-            public string name { get; set; }
-            public int points;
+    class Player : IComparable<Player> {
+        public string name { get; set; }
+        public int points { get; set; }
             public Player(string name)
             {
                 this.name = name;
             }
+        int IComparable<Player>.CompareTo(Player Other)
+        {
+            int sumOther = Other.points + Other.name.Length;
+            int sumThis = this.points + this.name.Length;
+
+            if (sumOther > sumThis)
+                return -1;
+            else if (sumOther == sumThis)
+                return 0;
+            else
+                return 1;
+        }
             public override string ToString()
             {
                 return $"{name + points}";
@@ -152,4 +163,5 @@ namespace TheLeague
         }
 
     }
+
 }
