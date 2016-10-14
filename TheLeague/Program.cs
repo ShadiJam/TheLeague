@@ -21,7 +21,6 @@ namespace TheLeague
             List<Team> teams = new List<Team>();
             List<Coach> coaches = new List<Coach>();
             List<Player> players = new List<Player>();
-            List<League> allTeams = new List<League>();
             Team lastTeam = null;
             Coach lastCoach = null;
             Player lastPlayer = null;
@@ -69,7 +68,7 @@ namespace TheLeague
             }
             
             Directory.CreateDirectory("html");
-            File.WriteAllText(@"html/index.html", ___.ToString);
+            File.WriteAllText(@"html/index.html", teams.ToString);
 
             
             Console.ReadLine();
@@ -98,7 +97,7 @@ namespace TheLeague
             {
                 this.name = name;
             }
-            public IEnumerable<Team> allTeams = new List<Team>();
+            public IEnumerable<Team> teams = new List<Team>();
             public override string ToString()
             {
                 return $"{name}";
@@ -137,14 +136,14 @@ namespace TheLeague
                 return $"{name}";
             }
         }
-    class Player : IComparable<Player> {
+    class Player {
         public string name { get; set; }
         public int points { get; set; }
             public Player(string name)
             {
                 this.name = name;
             }
-        int IComparable<Player>.CompareTo(Player Other)
+    /*    int IComparable<Player>.CompareTo(Player Other)
         {
             int sumOther = Other.points + Other.name.Length;
             int sumThis = this.points + this.name.Length;
@@ -155,11 +154,17 @@ namespace TheLeague
                 return 0;
             else
                 return 1;
-        }
+        } */
             public override string ToString()
             {
                 return $"{name + points}";
             }
+        }
+        public static int Max(IEnumerable<int> players)
+        {
+            List<Player> allPlayers = new List<Player>();
+            Player max = allPlayers.Max();
+            Console.WriteLine("{0}", max);
         }
 
     }
