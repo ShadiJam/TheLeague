@@ -30,6 +30,8 @@ namespace TheLeague
                 {
                     lastTeam = new Team(str.Substring(1, str.Length - 1));
                     teams.Add(lastTeam);
+                   
+                    
                 }
                 else if (str.IndexOf("'") == 0)
                 {
@@ -40,18 +42,19 @@ namespace TheLeague
                 {
                     lastCoach = new Coach(str.Substring(1, str.Length - 1));
                     coaches.Add(lastCoach);
+                    lastTeam.coaches = lastTeam.coaches.Concat(new Team[] { lastTeam });
                 }
                 else if (str.IndexOf("-") == 0)
                 {
                     lastPlayer = new Player(str.Substring(1, str.Length - 1));
                     players.Add(lastPlayer);
+                    lastTeam.players = lastTeam.players.Concat(new Team[] { lastTeam });
                 }
                 else if (str.IndexOf("|") == 0)
                 {
                     lastPlayer.points = int.Parse(str.Substring(1, str.Length - 1));
                     players.Add(lastPlayer);
                 }
-                
             };
             foreach(string s in DATA1.Split(new char[] { ',' }))
             {
@@ -65,10 +68,11 @@ namespace TheLeague
             {
                 process(s.Trim());
             }
-        //    Directory.CreateDirectory("html");
-        //    File.WriteAllText(@"html/index.html", ToString)
             
-            Console.WriteLine(teams);
+            Directory.CreateDirectory("html");
+            File.WriteAllText(@"html/index.html", team.ToString);
+
+            
             Console.ReadLine();
         }
         class Sport {
@@ -83,7 +87,7 @@ namespace TheLeague
                 Soccer,
                 Football,
             }
-            IEnumerable<League> leagues = new List<League>();
+            public IEnumerable<League> leagues = new List<League>();
             public override string ToString()
             {
                 return $"{name}";
@@ -95,51 +99,36 @@ namespace TheLeague
             {
                 this.name = name;
             }
-            IEnumerable<Team> teams = new List<Team>();
+            public IEnumerable<Team> teams = new List<Team>();
             public override string ToString()
             {
-                string t = String.Join(", ", teams);
-                return String.Format(@"
-                <div>
-                    <h1>{0}</h1>
-                        <p> Teams: {1} </p>
-                </div>
-                ", name, t);
+                return $"{name}";
             }
         }
         class Team {
-            public string name { get; set; }
+            public string name; 
             public string homeTown;
             public Team(string name)
             {
                 this.name = name;
             }
-            IEnumerable<Coach> coaches = new List<Coach>();
-            IEnumerable<Player> players = new List<Player>();
+            public IEnumerable<Coach> coaches = new List<Coach>();
+            public IEnumerable<Player> players = new List<Player>();
             public override string ToString()
             {
-                string t = String.Join(", ", name);
                 string c = String.Join(", ", coaches);
                 string p = String.Join(", ", players);
-                return String.Format(
-                @"<!DOCTYPE html>
-                <html>
-                <head>
-                    <title></title>
-                    <link href=""html/index.html"" type=""text/css"" rel=""stylesheet"">
-                </head>
-                <body> 
-                    <h1> {0} </h1>
-                        <p> Team Hometown: {2} </p>
-                        <p> Coaches: {3} </p>
-                        <p> Players: {4} </p>
-                </body>
-                </html>
-                ", name, homeTown, c, p);
+                return String.Format(@"
+            <div>
+                <h1>{0} {1}</h1>
+                    <p>Coaches: {2} </p>
+                    <p>Players: {3} </p>
+            </div>
+            ", homeTown, name, c, p);
             }
         }
         class Coach {
-            public string name { get; set; }
+            public string name;
             public Coach(string name)
             {
                 this.name = name;
@@ -150,7 +139,7 @@ namespace TheLeague
             }
         }
         class Player {
-            public string name;
+            public string name { get; set; }
             public int points;
             public Player(string name)
             {
@@ -158,7 +147,7 @@ namespace TheLeague
             }
             public override string ToString()
             {
-                string t = String.Join(", ", team);
+                return $"{name + points}";
             }
         }
 
