@@ -68,9 +68,9 @@ namespace TheLeague
             }
             
             Directory.CreateDirectory("html");
-            File.WriteAllText(@"html/index.html", teams.ToString);
+            File.WriteAllText(@"html/index.html", players.ToString());
 
-            
+            Console.WriteLine(teams);
             Console.ReadLine();
         }
         class Sport {
@@ -160,13 +160,14 @@ namespace TheLeague
                 return $"{name + points}";
             }
         }
-        public static int Max(IEnumerable<int> players)
-        {
-            List<Player> allPlayers = new List<Player>();
-            Player max = allPlayers.Max();
-            Console.WriteLine("{0}", max);
+      //  public static int Max(IEnumerable<int> players)
+      //  {
+      //      List<Player> allPlayers = new List<Player>();
+      //      Player max = allPlayers.Max();
+      //      Console.WriteLine("The Player of the Year is {0}:", max);
+            
         }
 
     }
 
-}
+
