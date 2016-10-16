@@ -10,7 +10,7 @@ namespace TheLeague
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
             var sportLeague = new Sport("Basketball");
@@ -33,7 +33,7 @@ namespace TheLeague
                 }
                 else if (str.IndexOf("'") == 0)
                 {
-                    lastTeam.homeTown = (str.Substring(1, str.Length -1));
+                    lastTeam.homeTown = (str.Substring(1, str.Length - 1));
                     teams.Add(lastTeam);
                 }
                 else if (str.IndexOf("_") == 0)
@@ -54,57 +54,96 @@ namespace TheLeague
                     players.Add(lastPlayer);
                 }
             };
-            foreach(string s in DATA1.Split(new char[] { ',' }))
+            foreach (string s in DATA1.Split(new char[] { ',' }))
             {
                 process(s.Trim());
             }
-            foreach(string s in DATA2.Split(new char[] { ',' }))
+            foreach (string s in DATA2.Split(new char[] { ',' }))
             {
                 process(s.Trim());
             }
-            foreach(string s in DATA3.Split(new char[] { ',' }))
+            foreach (string s in DATA3.Split(new char[] { ',' }))
             {
                 process(s.Trim());
             }
-            
             Directory.CreateDirectory("html");
-            File.WriteAllText(@"html/index.html", players.ToString());
 
-            Console.WriteLine(teams);
-            Console.ReadLine();
+            File.WriteAllText(@"html/index.html", players.ElementAt(0).ToString());
+            }
+
+            
+       
+           
+            
         }
-        class Sport {
-            public string name; 
+        
+        class Sport
+        {
+            public string name;
             public Sport(string name)
             {
                 this.name = name;
             }
-            enum SportType {
+            enum SportType
+            {
                 Basketball,
                 Tennis,
                 Soccer,
                 Football,
             }
             public IEnumerable<League> leagues = new List<League>();
+            public string List <Team> getAllTeams()
+            {
+            return Team.ToString();
+            }
+
+            public int Player getplayerOfTheYear()
+            {
+                
+            }
+            
+            public int Coach getCoachOfTheYear()
+            {
+            return coaches.Average.Max();
+            }
+
+        
+       
+            public static int Max(IEnumerable<int> players)
+            {
+            List<Player> result = new List<Player>();
+            Player max = result.Max();
+            foreach (int points in players)
+            {
+                result.Max();
+            }
+                return players.Max();
+            }
+    
             public override string ToString()
             {
                 return $"{name}";
             }
+            
         }
-        class League {
-            public string name; 
+        class League
+        {
+            public string name;
             public League(string name)
             {
                 this.name = name;
             }
             public IEnumerable<Team> teams = new List<Team>();
+            
             public override string ToString()
             {
                 return $"{name}";
             }
         }
-        class Team { 
-            public string name; 
+        class Team
+        {
+            
+            public string name;
             public string homeTown;
             public Team(string name)
             {
@@ -112,6 +151,16 @@ namespace TheLeague
             }
             public IEnumerable<Coach> coaches = new List<Coach>();
             public IEnumerable<Player> players = new List<Player>();
+            public static List<U> teams<T, U>(IEnumerable<T> list, Func<T, U> fn)
+            {
+                List<U> result = new List<U>();
+                foreach (var points in list)
+                {
+                    result.Add(fn(points));
+                }
+                return result;
+            }
+
             public override string ToString()
             {
                 string c = String.Join(", ", coaches);
@@ -125,7 +174,8 @@ namespace TheLeague
             ", homeTown, name, c, p);
             }
         }
-        class Coach {
+        class Coach
+        {
             public string name;
             public Coach(string name)
             {
@@ -136,38 +186,27 @@ namespace TheLeague
                 return $"{name}";
             }
         }
-    class Player {
-        public string name { get; set; }
-        public int points { get; set; }
+        class Player
+        {
+            public string name;
+            public int points; 
             public Player(string name)
             {
                 this.name = name;
             }
-    /*    int IComparable<Player>.CompareTo(Player Other)
-        {
-            int sumOther = Other.points + Other.name.Length;
-            int sumThis = this.points + this.name.Length;
-
-            if (sumOther > sumThis)
-                return -1;
-            else if (sumOther == sumThis)
-                return 0;
-            else
-                return 1;
-        } */
+          
             public override string ToString()
-            {
-                return $"{name + points}";
+            { 
+            string n = String.Join(", ", name);
+            string p = String.Join(", ", points);
+                return String.Format(@"
+            <div>
+                <p>{0}: {1}</p>  
+            </div>
+            ", n, p);
             }
         }
-      //  public static int Max(IEnumerable<int> players)
-      //  {
-      //      List<Player> allPlayers = new List<Player>();
-      //      Player max = allPlayers.Max();
-      //      Console.WriteLine("The Player of the Year is {0}:", max);
-            
-        }
-
     }
+
 
 
