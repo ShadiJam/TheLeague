@@ -71,48 +71,49 @@ namespace TheLeague
 
             File.WriteAllText(@"html/index.html", players.ElementAt(0).ToString());
             }
-
-            
-       
-           
-            
         }
-        
-        class Sport
-        {
-            public string name;
-            public Sport(string name)
-            {
-                this.name = name;
-            }
-            enum SportType
-            {
-                Basketball,
-                Tennis,
-                Soccer,
-                Football,
-            }
-            public IEnumerable<League> leagues = new List<League>();
-            public string List <Team> getAllTeams()
-            {
-            return Team.ToString();
-            }
 
-            public static string getplayerOfTheYear()
+    class Sport
+    {
+        public string name;
+        public Sport(string name)
+        {
+            this.name = name;
+        }
+        enum SportType
+        {
+            Basketball,
+            Tennis,
+            Soccer,
+            Football,
+        }
+        public IEnumerable<League> leagues = new List<League>();
+        public string List<Team> getAllTeams()
+        {
+            List<Team> result = new List<Team>();
+            Team getAllTeams = teams.ToString();
+            foreach(string team in teams)
             {
+                result.ToString();
+            }
+            return getAllTeams.ToString();
+        }
+
+
+        public static string getplayerOfTheYear()
+        {
             List<Player> x = new List<Player>();
-            player x = players.Max();
-            foreach(string x in players)
+            Player x = players.Max();
+            foreach (string x in players)
             {
                 result.getPlayerOfTheYear();
             }
             return x.getPlayerOfTheYear();
-            }
+        }
             
             public int Coach getCoachOfTheYear()
             {
             return coaches.Average.Max();
-            
             }
 
         
