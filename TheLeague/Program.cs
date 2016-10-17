@@ -52,6 +52,7 @@ namespace TheLeague
                 {
                     lastPlayer.points = int.Parse(str.Substring(1, str.Length - 1));
                     players.Add(lastPlayer);
+                  //  lastPlayer.points = lastPlayer.points.Concat(new Player[] { points });
                 }
             };
             foreach (string s in DATA1.Split(new char[] { ',' }))
@@ -97,14 +98,21 @@ namespace TheLeague
             return Team.ToString();
             }
 
-            public int Player getplayerOfTheYear()
+            public static string getplayerOfTheYear()
             {
-                
+            List<Player> x = new List<Player>();
+            player x = players.Max();
+            foreach(string x in players)
+            {
+                result.getPlayerOfTheYear();
+            }
+            return x.getPlayerOfTheYear();
             }
             
             public int Coach getCoachOfTheYear()
             {
             return coaches.Average.Max();
+            
             }
 
         
@@ -158,8 +166,9 @@ namespace TheLeague
                 {
                     result.Add(fn(points));
                 }
-                return result;
+                    return teams.Add();
             }
+           
 
             public override string ToString()
             {
