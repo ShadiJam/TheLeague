@@ -102,18 +102,24 @@ namespace TheLeague
 
         public static string getplayerOfTheYear()
         {
-            List<Player> x = new List<Player>();
-            Player x = players.Max();
-            foreach (string x in players)
+            List<Player> result = new List<Player>();
+            Player getPlayerOfTheYear = players.Max();
+            foreach (string player in players)
             {
-                result.getPlayerOfTheYear();
+                result.ToString();
             }
-            return x.getPlayerOfTheYear();
+            return getPlayerOfTheYear.ToString();
         }
             
             public int Coach getCoachOfTheYear()
             {
-            return coaches.Average.Max();
+            List<Coach> result = new List<Coach>();
+            Coach getCoachOfTheYear = coaches.Add();
+            foreach(int coach in coaches)
+            {
+                result.Add();
+            }
+            return coaches.Add.Max();
             }
 
         
