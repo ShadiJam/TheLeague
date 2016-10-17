@@ -69,7 +69,7 @@ namespace TheLeague
             }
             Directory.CreateDirectory("html");
 
-            File.WriteAllText(@"html/index.html", players.ElementAt(0).ToString());
+            File.WriteAllText(@"html/index.html", teams.ElementAt(0).ToString());
             }
         }
 
@@ -166,15 +166,15 @@ namespace TheLeague
             }
             public IEnumerable<Coach> coaches = new List<Coach>();
             public IEnumerable<Player> players = new List<Player>();
-            public static List<U> teams<T, U>(IEnumerable<T> list, Func<T, U> fn)
-            {
-                List<U> result = new List<U>();
-                foreach (var points in list)
-                {
-                    result.Add(fn(points));
-                }
-                    return teams.Add();
-            }
+           // public static List<U> teams<T, U>(IEnumerable<T> list, Func<T, U> fn)
+           // {
+           //     List<U> result = new List<U>();
+           //     foreach (var points in list)
+           //     {
+            //        result.Add(fn(points));
+            //    }
+            //        return teams.Add();
+           // } translate this into select
            
 
             public override string ToString()
