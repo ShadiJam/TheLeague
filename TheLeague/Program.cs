@@ -70,8 +70,20 @@ namespace TheLeague
             Directory.CreateDirectory("html");
 
             File.WriteAllText(@"html/index.html", teams.ElementAt(0).ToString());
+            var l = new League();
+            for(var m = 0; m<2; m++)
+            {
+                var t = new Team();
+                l.teams = l.teams.Concat(new List<Team> { t });
+
+                for(var n = 0; n<3; n++)
+                {
+                    var p = new Player();
+                    t.players = t.players.Concat(new List<Player> { p });
+                }
             }
         }
+    }
 
     class Sport
     {
@@ -90,13 +102,7 @@ namespace TheLeague
         public IEnumerable<League> leagues = new List<League>();
         public string List<Team> getAllTeams()
         {
-            List<Team> result = new List<Team>();
-            Team getAllTeams = teams.ToString();
-            foreach(string team in teams)
-            {
-                result.ToString();
-            }
-            return getAllTeams.ToString();
+            
         }
 
 
@@ -124,7 +130,7 @@ namespace TheLeague
 
         
        
-            public static int Max(IEnumerable<int> players)
+            public static int Max(IEnumerable<int> players) //don't need this if using aggregates.
             {
             List<Player> result = new List<Player>();
             Player max = result.Max();
